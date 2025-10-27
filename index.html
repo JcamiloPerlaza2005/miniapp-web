@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia de Viajes</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta name="description" content="Agencia de viajes internacional y nacional. Reserva tus vacaciones con expertos en turismo.">
+    <meta name="author" content="Agencia de Viajes">
+</head>
+<body>
+    <!-- Encabezado profesional con roles y descripciones -->
+    <header role="banner">
+        <h1 tabindex="0">Agencia de Viajes</h1>
+        <p class="descripcion-header">Expertos en turismo internacional y nacional. ¡Viaja seguro y con estilo!</p>
+        <nav role="navigation" aria-label="Menú principal">
+            <ul>
+                <li><a href="#" tabindex="0"><i class="fa fa-home" aria-hidden="true"></i> <span class="sr-only">Ir a inicio</span>Inicio</a></li>
+                <li><a href="#" tabindex="0"><i class="fa fa-map-marker-alt" aria-hidden="true"></i> <span class="sr-only">Ver destinos</span>Destinos</a></li>
+                <li><a href="#" tabindex="0"><i class="fa fa-tags" aria-hidden="true"></i> <span class="sr-only">Ver promociones</span>Promociones</a></li>
+                <li><a href="#" tabindex="0"><i class="fa fa-envelope" aria-hidden="true"></i> <span class="sr-only">Contacto</span>Contacto</a></li>
+                <li><a href="#" id="menuReservas" tabindex="0"><i class="fa fa-clipboard-list" aria-hidden="true"></i> <span class="sr-only">Consultar reservas activas</span>Reservas Activas</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- Sección principal con imagen de fondo y botones accesibles -->
+        <section class="hero" style="background: url('hero-bg.jpg') center/cover no-repeat;" aria-label="Sección principal de bienvenida">
+            <h2 tabindex="0">¡Descubre el mundo con nosotros!</h2>
+            <p>Ofrecemos los mejores paquetes turísticos para que vivas experiencias inolvidables.</p>
+            <button id="btnDestinos" class="main-btn" aria-label="Ver destinos turísticos" tabindex="0">Ver Destinos</button>
+            <button id="btnReservar" class="main-btn" aria-label="Ir al formulario de reserva" tabindex="0">Reservar</button>
+        </section>
+        <!-- Destinos populares con botones accesibles -->
+        <section class="destinos" style="display:none;" aria-label="Destinos populares">
+            <h3 tabindex="0">Destinos populares</h3>
+            <div class="destinos-list" role="list">
+                <!-- Todos los botones de destino tienen aria-label -->
+                <button class="destino-btn" data-pais="París" aria-label="Ver destino París">París</button>
+                <button class="destino-btn" data-pais="Roma" aria-label="Ver destino Roma">Roma</button>
+                <button class="destino-btn" data-pais="Tokio" aria-label="Ver destino Tokio">Tokio</button>
+                <button class="destino-btn" data-pais="New York" aria-label="Ver destino New York">New York</button>
+                <button class="destino-btn" data-pais="Londres" aria-label="Ver destino Londres">Londres</button>
+                <button class="destino-btn" data-pais="Madrid" aria-label="Ver destino Madrid">Madrid</button>
+                <button class="destino-btn" data-pais="Barcelona" aria-label="Ver destino Barcelona">Barcelona</button>
+                <button class="destino-btn" data-pais="Berlín" aria-label="Ver destino Berlín">Berlín</button>
+                <button class="destino-btn" data-pais="Ámsterdam" aria-label="Ver destino Ámsterdam">Ámsterdam</button>
+                <button class="destino-btn" data-pais="Lisboa" aria-label="Ver destino Lisboa">Lisboa</button>
+                <button class="destino-btn" data-pais="Praga" aria-label="Ver destino Praga">Praga</button>
+                <button class="destino-btn" data-pais="Venecia" aria-label="Ver destino Venecia">Venecia</button>
+                <button class="destino-btn" data-pais="Buenos Aires" aria-label="Ver destino Buenos Aires">Buenos Aires</button>
+                <button class="destino-btn" data-pais="Ciudad de México" aria-label="Ver destino Ciudad de México">Ciudad de México</button>
+                <button class="destino-btn" data-pais="Sídney" aria-label="Ver destino Sídney">Sídney</button>
+                <button class="destino-btn" data-pais="Río de Janeiro" aria-label="Ver destino Río de Janeiro">Río de Janeiro</button>
+                <button class="destino-btn" data-pais="El Cairo" aria-label="Ver destino El Cairo">El Cairo</button>
+                <button class="destino-btn" data-pais="Estambul" aria-label="Ver destino Estambul">Estambul</button>
+                <button class="destino-btn" data-pais="Bangkok" aria-label="Ver destino Bangkok">Bangkok</button>
+            </div>
+            <div id="infoDestino" style="margin-top:20px;" aria-live="polite"></div>
+            <button id="btnVolverDestinos" class="main-btn" aria-label="Volver al menú principal" tabindex="0">Volver</button>
+        </section>
+        <!-- Formulario de reserva profesional y accesible -->
+        <section class="reserva" style="display:none;" aria-label="Formulario de reserva">
+            <h3 tabindex="0">Formulario de Reserva</h3>
+            <form id="formReserva" autocomplete="on" aria-describedby="calendarioActual">
+                <label for="nombreReserva">Nombre completo:</label>
+                <input type="text" name="nombre" id="nombreReserva" required placeholder="Ej: Juan Pérez" autocomplete="name"><br>
+                <label for="emailReserva">Email:</label>
+                <input type="email" name="email" id="emailReserva" required placeholder="Ej: correo@ejemplo.com" autocomplete="email"><br>
+                <label for="telefonoReserva">Teléfono/Celular:</label>
+                <input type="tel" name="telefono" id="telefonoReserva" pattern="[0-9]{7,15}" required placeholder="Ej: 3001234567" autocomplete="tel"><br>
+                <label for="cedulaReserva">Cédula de Ciudadanía:</label>
+                <input type="text" name="cedula" id="cedulaReserva" pattern="[0-9]{6,15}" required placeholder="Ej: 12345678"><br>
+                <label for="fechaNacimientoReserva">Fecha de nacimiento:</label>
+                <input type="date" name="fechaNacimiento" id="fechaNacimientoReserva" required><br>
+                <label for="selectDestino">Destino:</label>
+                <select name="destino" id="selectDestino" required aria-required="true">
+                    <!-- Las opciones se llenan dinámicamente por JS -->
+                </select><br>
+                <label for="tipoViaje">Tipo de viaje:</label>
+                <select name="tipoViaje" id="tipoViaje" required>
+                    <option value="ida">Solo ida</option>
+                    <option value="idaVuelta">Ida y vuelta</option>
+                </select><br>
+                <label for="fechaViaje">Fecha de viaje:</label>
+                <input type="date" name="fecha" id="fechaViaje" required><br>
+                <!-- NUEVO: Selección de hora de viaje (24 horas) -->
+                <label for="horaViaje">Hora de viaje:</label>
+                <input type="time" name="horaViaje" id="horaViaje" required><br>
+                <div id="campoFechaVuelta" style="display:none;">
+                    <label for="fechaVuelta">Fecha de regreso:</label>
+                    <input type="date" name="fechaVuelta" id="fechaVuelta"><br>
+                </div>
+                <label for="diasViaje">Días de viaje:</label>
+                <input type="number" name="dias" id="diasViaje" min="1" required placeholder="Ej: 5"><br>
+                <label for="personasViaje">Personas:</label>
+                <input type="number" name="personas" id="personasViaje" min="1" required placeholder="Ej: 2"><br>
+                <label for="aerolineaReserva">Aerolínea:</label>
+                <select id="aerolineaReserva" name="aerolinea" required>
+                    <!-- Las opciones se llenan dinámicamente por JS -->
+                </select><br>
+                <label for="hotelReserva">Hotel:</label>
+                <select name="hotel" id="hotelReserva" required>
+                    <option value="">Seleccione hotel...</option>
+                </select><br>
+                <div id="valorViaje" style="margin:10px 0; font-weight:bold;" aria-live="polite"></div>
+                <button type="submit" class="main-btn" aria-label="Confirmar reserva">Confirmar Reserva</button>
+            </form>
+            <div id="calendarioActual" aria-live="polite"></div>
+            <button id="btnVolverReserva" class="main-btn" aria-label="Volver al menú principal" tabindex="0">Volver</button>
+        </section>
+        <!-- Mensaje de reserva exitosa profesional -->
+        <section class="mensaje-reserva" style="display:none;" aria-label="Mensaje de reserva exitosa">
+            <h3 tabindex="0">¡Reserva realizada con éxito!</h3>
+            <p>Tu reserva ha sido guardada.</p>
+            <p style="font-size:0.95em;color:#555;">Puedes volver al formulario de reserva usando el botón de abajo.</p>
+            <button id="btnVolverMensaje" class="main-btn" aria-label="Volver al formulario de reserva" tabindex="0">Volver</button>
+        </section>
+        <!-- Modal de consulta de reservas profesional y accesible -->
+        <div id="modalConsultaReserva" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.35);z-index:10001;align-items:center;justify-content:center;" role="dialog" aria-modal="true" aria-labelledby="tituloModalReserva">
+            <div style="background:#fff;padding:28px 22px;border-radius:12px;box-shadow:0 6px 32px rgba(0,0,0,0.18);max-width:420px;min-width:320px;position:relative;">
+                <button id="cerrarModalReserva" style="position:absolute;top:10px;right:12px;background:none;border:none;font-size:1.3em;cursor:pointer;color:#888;" aria-label="Cerrar consulta de reservas">&times;</button>
+                <h3 id="tituloModalReserva" style="color:#0077b6;">Consultar Reserva</h3>
+                <label for="inputCedulaConsulta">Cédula de Ciudadanía:</label>
+                <input type="text" id="inputCedulaConsulta" style="width:100%;margin-bottom:10px;" placeholder="Ingrese cédula..." autocomplete="off"><br>
+                <button id="btnBuscarReserva" style="padding:7px 18px;background:#0077b6;color:#fff;border:none;border-radius:5px;cursor:pointer;" aria-label="Buscar reserva">Buscar</button>
+                <div id="resultadoReserva" style="margin-top:18px;" aria-live="polite"></div>
+            </div>
+        </div>
+    </main>
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <p>&copy; 2025 Agencia de Viajes. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#" aria-label="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Correo electrónico"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+            </div>
+            <nav aria-label="Enlaces legales">
+                <a href="#">Términos y condiciones</a> |
+                <a href="#">Política de privacidad</a>
+            </nav>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <!-- Profesional: Script de accesibilidad para lectores de pantalla -->
+    <script>
+        // Agrega clase sr-only para accesibilidad visual oculta
+        (function() {
+            var style = document.createElement('style');
+            style.innerHTML = '.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}';
+            document.head.appendChild(style);
+        })();
+    </script>
+</body>
+</html>
