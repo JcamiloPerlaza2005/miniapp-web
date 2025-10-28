@@ -11,6 +11,294 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <meta name="description" content="Agencia de viajes internacional y nacional. Reserva tus vacaciones con expertos en turismo.">
     <meta name="author" content="Agencia de Viajes">
+    <!-- ESTILOS PROFESIONALES EMBEBIDOS -->
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            background: #f6f8fa;
+            color: #222;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(90deg, #0077b6 60%, #00b4d8 100%);
+            color: #fff;
+            padding: 32px 0 18px 0;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        }
+        header h1 {
+            margin: 0 0 8px 0;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .descripcion-header {
+            font-size: 1.15em;
+            margin-bottom: 18px;
+            color: #e0f7fa;
+        }
+        nav[role="navigation"] ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 22px;
+            justify-content: center;
+        }
+        nav[role="navigation"] li {
+            display: inline-block;
+        }
+        nav[role="navigation"] a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.08em;
+            padding: 8px 18px;
+            border-radius: 22px;
+            transition: background 0.2s, color 0.2s;
+            position: relative;
+        }
+        nav[role="navigation"] a:hover, nav[role="navigation"] a:focus {
+            background: #00b4d8;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        main {
+            max-width: 980px;
+            margin: 32px auto 0 auto;
+            padding: 0 18px 32px 18px;
+        }
+        .hero {
+            background: linear-gradient(120deg, #caf0f8 60%, #f1faee 100%), url('hero-bg.jpg') center/cover no-repeat;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,119,182,0.07);
+            padding: 48px 32px 36px 32px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .hero h2 {
+            font-size: 2em;
+            color: #0077b6;
+            margin-bottom: 12px;
+        }
+        .main-btn {
+            background: linear-gradient(90deg, #00b4d8 60%, #48cae4 100%);
+            color: #fff;
+            border: none;
+            border-radius: 22px;
+            padding: 12px 32px;
+            font-size: 1.08em;
+            font-weight: 600;
+            margin: 10px 8px 0 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 12px rgba(0,180,216,0.08);
+            transition: background 0.2s, transform 0.15s;
+        }
+        .main-btn:hover, .main-btn:focus {
+            background: linear-gradient(90deg, #0077b6 60%, #00b4d8 100%);
+            transform: translateY(-2px) scale(1.04);
+        }
+        .destinos {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,119,182,0.07);
+            padding: 32px 18px 24px 18px;
+            margin-bottom: 32px;
+        }
+        .destinos h3 {
+            color: #0077b6;
+            margin-bottom: 18px;
+        }
+        .destinos-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .destino-btn {
+            background: #f1faee;
+            color: #0077b6;
+            border: 2px solid #00b4d8;
+            border-radius: 14px;
+            padding: 10px 22px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+            box-shadow: 0 1px 6px rgba(0,119,182,0.06);
+        }
+        .destino-btn:hover, .destino-btn:focus {
+            background: #00b4d8;
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(0,119,182,0.13);
+        }
+        #infoDestino {
+            background: #e0f7fa;
+            border-radius: 10px;
+            padding: 12px 18px;
+            color: #0077b6;
+            font-size: 1.08em;
+            min-height: 28px;
+        }
+        section[aria-label="Promociones"], section[aria-label="Contacto"] {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,119,182,0.07);
+            padding: 32px 18px 24px 18px;
+            margin-bottom: 32px;
+        }
+        section[aria-label="Promociones"] h3, section[aria-label="Contacto"] h3 {
+            color: #0077b6;
+        }
+        section[aria-label="Promociones"] ul, section[aria-label="Contacto"] ul {
+            margin: 0 0 0 18px;
+            padding: 0;
+            font-size: 1.08em;
+        }
+        .reserva {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,119,182,0.07);
+            padding: 32px 18px 24px 18px;
+            margin-bottom: 32px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .reserva h3 {
+            color: #0077b6;
+            margin-bottom: 18px;
+        }
+        #formReserva label {
+            font-weight: 500;
+            color: #0077b6;
+            margin-top: 8px;
+            display: block;
+        }
+        #formReserva input, #formReserva select {
+            width: 100%;
+            padding: 8px 10px;
+            margin: 6px 0 14px 0;
+            border: 1.5px solid #bde0fe;
+            border-radius: 8px;
+            font-size: 1em;
+            background: #f6f8fa;
+            transition: border 0.18s;
+        }
+        #formReserva input:focus, #formReserva select:focus {
+            border: 1.5px solid #00b4d8;
+            outline: none;
+        }
+        #valorViaje {
+            background: #e0f7fa;
+            border-radius: 8px;
+            color: #0077b6;
+            padding: 8px 12px;
+            margin-bottom: 10px;
+        }
+        .mensaje-reserva {
+            background: #dff6fb;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,119,182,0.07);
+            padding: 32px 18px 24px 18px;
+            max-width: 420px;
+            margin: 32px auto;
+            text-align: center;
+        }
+        .mensaje-reserva h3 {
+            color: #009688;
+            margin-bottom: 12px;
+        }
+        #modalConsultaReserva {
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        #modalConsultaReserva > div {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 6px 32px rgba(0,119,182,0.13);
+            padding: 32px 22px 24px 22px;
+            max-width: 420px;
+            min-width: 320px;
+        }
+        #modalConsultaReserva h3 {
+            color: #0077b6;
+            margin-bottom: 14px;
+        }
+        #modalConsultaReserva input {
+            width: 100%;
+            padding: 8px 10px;
+            margin: 6px 0 14px 0;
+            border: 1.5px solid #bde0fe;
+            border-radius: 8px;
+            font-size: 1em;
+            background: #f6f8fa;
+        }
+        #modalConsultaReserva button {
+            background: linear-gradient(90deg, #00b4d8 60%, #48cae4 100%);
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            padding: 8px 22px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+        #modalConsultaReserva button:hover, #modalConsultaReserva button:focus {
+            background: linear-gradient(90deg, #0077b6 60%, #00b4d8 100%);
+        }
+        #cerrarModalReserva {
+            color: #0077b6 !important;
+            font-size: 1.5em !important;
+        }
+        footer {
+            background: linear-gradient(90deg, #0077b6 60%, #00b4d8 100%);
+            color: #fff;
+            padding: 28px 0 18px 0;
+            text-align: center;
+            border-radius: 18px 18px 0 0;
+            margin-top: 32px;
+            box-shadow: 0 -2px 16px rgba(0,119,182,0.07);
+        }
+        .footer-content {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .footer-links {
+            margin: 12px 0;
+        }
+        .footer-links a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.3em;
+            transition: color 0.18s;
+        }
+        .footer-links a:hover, .footer-links a:focus {
+            color: #caf0f8;
+        }
+        footer nav a {
+            color: #e0f7fa;
+            text-decoration: underline;
+            margin: 0 4px;
+            font-size: 0.98em;
+        }
+        @media (max-width: 700px) {
+            main {
+                padding: 0 4vw 32px 4vw;
+            }
+            .hero, .destinos, .reserva, .mensaje-reserva, section[aria-label="Promociones"], section[aria-label="Contacto"] {
+                padding: 22px 6vw 18px 6vw;
+            }
+            nav[role="navigation"] ul {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Encabezado profesional con roles y descripciones -->
@@ -19,24 +307,24 @@
         <p class="descripcion-header">Expertos en turismo internacional y nacional. ¡Viaja seguro y con estilo!</p>
         <nav role="navigation" aria-label="Menú principal">
             <ul>
-                <li><a href="#" tabindex="0"><i class="fa fa-home" aria-hidden="true"></i> <span class="sr-only">Ir a inicio</span>Inicio</a></li>
-                <li><a href="#" tabindex="0"><i class="fa fa-map-marker-alt" aria-hidden="true"></i> <span class="sr-only">Ver destinos</span>Destinos</a></li>
-                <li><a href="#" tabindex="0"><i class="fa fa-tags" aria-hidden="true"></i> <span class="sr-only">Ver promociones</span>Promociones</a></li>
-                <li><a href="#" tabindex="0"><i class="fa fa-envelope" aria-hidden="true"></i> <span class="sr-only">Contacto</span>Contacto</a></li>
+                <li><a href="#" tabindex="0" data-section="seccionInicio"><i class="fa fa-home" aria-hidden="true"></i> <span class="sr-only">Ir a inicio</span>Inicio</a></li>
+                <li><a href="#" tabindex="0" data-section="seccionDestinos"><i class="fa fa-map-marker-alt" aria-hidden="true"></i> <span class="sr-only">Ver destinos</span>Destinos</a></li>
+                <li><a href="#" tabindex="0" data-section="seccionPromociones"><i class="fa fa-tags" aria-hidden="true"></i> <span class="sr-only">Ver promociones</span>Promociones</a></li>
+                <li><a href="#" tabindex="0" data-section="seccionContacto"><i class="fa fa-envelope" aria-hidden="true"></i> <span class="sr-only">Contacto</span>Contacto</a></li>
                 <li><a href="#" id="menuReservas" tabindex="0"><i class="fa fa-clipboard-list" aria-hidden="true"></i> <span class="sr-only">Consultar reservas activas</span>Reservas Activas</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <!-- Sección principal con imagen de fondo y botones accesibles -->
-        <section class="hero" style="background: url('hero-bg.jpg') center/cover no-repeat;" aria-label="Sección principal de bienvenida">
+        <!-- Sección principal (Inicio) -->
+        <section id="seccionInicio" class="hero" style="background: url('hero-bg.jpg') center/cover no-repeat;" aria-label="Sección principal de bienvenida">
             <h2 tabindex="0">¡Descubre el mundo con nosotros!</h2>
             <p>Ofrecemos los mejores paquetes turísticos para que vivas experiencias inolvidables.</p>
             <button id="btnDestinos" class="main-btn" aria-label="Ver destinos turísticos" tabindex="0">Ver Destinos</button>
             <button id="btnReservar" class="main-btn" aria-label="Ir al formulario de reserva" tabindex="0">Reservar</button>
         </section>
-        <!-- Destinos populares con botones accesibles -->
-        <section class="destinos" style="display:none;" aria-label="Destinos populares">
+        <!-- Destinos populares -->
+        <section id="seccionDestinos" class="destinos" style="display:none;" aria-label="Destinos populares">
             <h3 tabindex="0">Destinos populares</h3>
             <div class="destinos-list" role="list">
                 <!-- Todos los botones de destino tienen aria-label -->
@@ -62,6 +350,25 @@
             </div>
             <div id="infoDestino" style="margin-top:20px;" aria-live="polite"></div>
             <button id="btnVolverDestinos" class="main-btn" aria-label="Volver al menú principal" tabindex="0">Volver</button>
+        </section>
+        <!-- NUEVO: Sección Promociones -->
+        <section id="seccionPromociones" style="display:none;" aria-label="Promociones">
+            <h3 tabindex="0">Promociones</h3>
+            <ul>
+                <li>Descuento 20% en viajes a Europa.</li>
+                <li>2x1 en hoteles seleccionados en América Latina.</li>
+                <li>Vuelos nacionales con tarifa especial este mes.</li>
+            </ul>
+        </section>
+        <!-- NUEVO: Sección Contacto -->
+        <section id="seccionContacto" style="display:none;" aria-label="Contacto">
+            <h3 tabindex="0">Contacto</h3>
+            <p>¿Tienes dudas? Contáctanos:</p>
+            <ul>
+                <li>Email: <a href="mailto:info@agenciadeviajes.com">info@agenciadeviajes.com</a></li>
+                <li>Teléfono: +57 300 123 4567</li>
+                <li>Dirección: Calle 123 #45-67, Bogotá, Colombia</li>
+            </ul>
         </section>
         <!-- Formulario de reserva profesional y accesible -->
         <section class="reserva" style="display:none;" aria-label="Formulario de reserva">
@@ -121,14 +428,14 @@
             <button id="btnVolverMensaje" class="main-btn" aria-label="Volver al formulario de reserva" tabindex="0">Volver</button>
         </section>
         <!-- Modal de consulta de reservas profesional y accesible -->
-        <div id="modalConsultaReserva" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.35);z-index:10001;align-items:center;justify-content:center;" role="dialog" aria-modal="true" aria-labelledby="tituloModalReserva">
-            <div style="background:#fff;padding:28px 22px;border-radius:12px;box-shadow:0 6px 32px rgba(0,0,0,0.18);max-width:420px;min-width:320px;position:relative;">
-                <button id="cerrarModalReserva" style="position:absolute;top:10px;right:12px;background:none;border:none;font-size:1.3em;cursor:pointer;color:#888;" aria-label="Cerrar consulta de reservas">&times;</button>
-                <h3 id="tituloModalReserva" style="color:#0077b6;">Consultar Reserva</h3>
+        <div id="modalConsultaReserva" role="dialog" aria-modal="true" aria-labelledby="tituloModalReserva">
+            <div>
+                <button id="cerrarModalReserva" aria-label="Cerrar consulta de reservas">&times;</button>
+                <h3 id="tituloModalReserva">Consultar Reserva</h3>
                 <label for="inputCedulaConsulta">Cédula de Ciudadanía:</label>
-                <input type="text" id="inputCedulaConsulta" style="width:100%;margin-bottom:10px;" placeholder="Ingrese cédula..." autocomplete="off"><br>
-                <button id="btnBuscarReserva" style="padding:7px 18px;background:#0077b6;color:#fff;border:none;border-radius:5px;cursor:pointer;" aria-label="Buscar reserva">Buscar</button>
-                <div id="resultadoReserva" style="margin-top:18px;" aria-live="polite"></div>
+                <input type="text" id="inputCedulaConsulta" placeholder="Ingrese cédula..." autocomplete="off">
+                <button id="btnBuscarReserva" aria-label="Buscar reserva">Buscar</button>
+                <div id="resultadoReserva" aria-live="polite"></div>
             </div>
         </div>
     </main>
@@ -148,6 +455,52 @@
         </div>
     </footer>
     <script src="script.js"></script>
+    <!-- NUEVO: Script para mostrar/ocultar secciones según el menú -->
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // IDs de las secciones principales
+    const secciones = [
+        'seccionInicio',
+        'seccionDestinos',
+        'seccionPromociones',
+        'seccionContacto'
+    ];
+    // Manejar clics en el menú principal
+    document.querySelectorAll('nav[role="navigation"] a[data-section]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const id = this.getAttribute('data-section');
+            secciones.forEach(function(sec) {
+                const el = document.getElementById(sec);
+                if (el) {
+                    if (sec === id) {
+                        el.style.display = '';
+                        el.style.opacity = 1;
+                    } else {
+                        el.style.display = 'none';
+                        el.style.opacity = 0;
+                    }
+                }
+            });
+            // Ocultar otras secciones especiales si están abiertas
+            const reservaSec = document.querySelector('.reserva');
+            const mensajeSec = document.querySelector('.mensaje-reserva');
+            const modalSec = document.getElementById('modalConsultaReserva');
+            if (reservaSec) reservaSec.style.display = 'none';
+            if (mensajeSec) mensajeSec.style.display = 'none';
+            if (modalSec) modalSec.style.display = 'none';
+        });
+    });
+    // Mostrar solo la sección de inicio al cargar
+    secciones.forEach(function(sec, i) {
+        const el = document.getElementById(sec);
+        if (el) {
+            el.style.display = (i === 0) ? '' : 'none';
+            el.style.opacity = (i === 0) ? 1 : 0;
+        }
+    });
+});
+    </script>
     <!-- Profesional: Script de accesibilidad para lectores de pantalla -->
     <script>
         // Agrega clase sr-only para accesibilidad visual oculta

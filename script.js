@@ -936,18 +936,40 @@ document.addEventListener("DOMContentLoaded", function() {
         link.onclick = function(e) {
             e.preventDefault();
             const texto = link.textContent.trim();
-            [hero, destinos, reserva, mensajeReserva].forEach(sec => sec.style.display = 'none');
+
+            // Ocultar todas las secciones principales
+            if (hero) { hero.style.display = 'none'; hero.style.opacity = 0; }
+            if (destinos) { destinos.style.display = 'none'; destinos.style.opacity = 0; }
+            if (reserva) { reserva.style.display = 'none'; reserva.style.opacity = 0; }
+            if (mensajeReserva) { mensajeReserva.style.display = 'none'; mensajeReserva.style.opacity = 0; }
+            // Ocultar secciones adicionales si existen
+            const seccionPromociones = document.getElementById('seccionPromociones');
+            const seccionContacto = document.getElementById('seccionContacto');
+            if (seccionPromociones) seccionPromociones.style.display = 'none';
+            if (seccionContacto) seccionContacto.style.display = 'none';
+
+            // Mostrar la sección correspondiente según el botón
             if (texto === "Inicio") {
-                fadeInSection(hero);
+                if (hero) {
+                    hero.style.display = 'block';
+                    setTimeout(() => { hero.style.opacity = 1; }, 10);
+                }
             } else if (texto === "Destinos") {
-                fadeInSection(destinos);
-                infoDestino.innerHTML = "";
+                if (destinos) {
+                    destinos.style.display = 'block';
+                    setTimeout(() => { destinos.style.opacity = 1; }, 10);
+                    if (infoDestino) infoDestino.innerHTML = "";
+                }
             } else if (texto === "Promociones") {
-                window.mostrarPromocion();
-                fadeInSection(hero);
+                if (seccionPromociones) {
+                    seccionPromociones.style.display = 'block';
+                    setTimeout(() => { seccionPromociones.style.opacity = 1; }, 10);
+                }
             } else if (texto === "Contacto") {
-                alert("Contáctanos en: contacto@viajes.com\nTel: +123456789");
-                fadeInSection(hero);
+                if (seccionContacto) {
+                    seccionContacto.style.display = 'block';
+                    setTimeout(() => { seccionContacto.style.opacity = 1; }, 10);
+                }
             }
         };
     });
@@ -1046,4 +1068,155 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+
+    // --- PROFESIONAL: Mejoras de experiencia y accesibilidad ---
+    document.addEventListener("DOMContentLoaded", function() {
+        // --- Accesibilidad: Cerrar modal con ESC y enfocar input al abrir ---
+        if (modalConsultaReserva) {
+            document.addEventListener('keydown', function(e) {
+                if (modalConsultaReserva.style.display === "flex") {
+                    if (e.key === "Escape") {
+                        modalConsultaReserva.style.display = "none";
+                    }
+                    if (e.key === "Tab") {
+                        // Mantener el foco dentro del modal
+                        const focusables = modalConsultaReserva.querySelectorAll('input,button');
+                        const first = focusables[0];
+                        const last = focusables[focusables.length - 1];
+                        if (e.shiftKey && document.activeElement === first) {
+                            last.focus();
+                            e.preventDefault();
+                        } else if (!e.shiftKey && document.activeElement === last) {
+                            first.focus();
+                            e.preventDefault();
+                        }
+                    }
+                }
+            });
+            menuReservas && menuReservas.addEventListener('click', function() {
+                setTimeout(() => { inputCedulaConsulta && inputCedulaConsulta.focus(); }, 300);
+            });
+        }
+
+        // --- UX: Mostrar/ocultar campo de fecha de vuelta según tipo de viaje ---
+        if (tipoViaje && campoFechaVuelta) {
+            tipoViaje.addEventListener('change', function() {
+                if (tipoViaje.value === 'idaVuelta') {
+                    campoFechaVuelta.style.display = '';
+                    fechaVuelta && (fechaVuelta.required = true);
+                } else {
+                    campoFechaVuelta.style.display = 'none';
+                    fechaVuelta && (fechaVuelta.required = false);
+                }
+            });
+            // Inicializar visibilidad
+            if (tipoViaje.value === 'idaVuelta') {
+                campoFechaVuelta.style.display = '';
+                fechaVuelta && (fechaVuelta.required = true);
+            } else {
+                campoFechaVuelta.style.display = 'none';
+                fechaVuelta && (fechaVuelta.required = false);
+            }
+        }
+
+        // --- UX: Validar fechas de ida y vuelta en tiempo real ---
+        if (fechaViaje && fechaVuelta) {
+            fechaViaje.addEventListener('change', function() {
+                if (fechaVuelta.value && fechaViaje.value > fechaVuelta.value) {
+                    mostrarToast("La fecha de vuelta debe ser posterior a la de ida.", "error");
+                    fechaVuelta.classList.add('input-error');
+                } else {
+                    fechaVuelta.classList.remove('input-error');
+                }
+            });
+            fechaVuelta.addEventListener('change', function() {
+                if (fechaViaje.value && fechaViaje.value > fechaVuelta.value) {
+                    mostrarToast("La fecha de vuelta debe ser posterior a la de ida.", "error");
+                    fechaVuelta.classList.add('input-error');
+                } else {
+                    fechaVuelta.classList.remove('input-error');
+                }
+            });
+        }
+
+        // --- UX: Calcular valor automáticamente al cambiar días/personas ---
+        if (diasViaje) diasViaje.addEventListener('input', calcularValor);
+        if (personasViaje) personasViaje.addEventListener('input', calcularValor);
+
+        // --- UX: Limpiar info destino al volver a destinos ---
+        if (btnVolverDestinos && infoDestino) {
+            btnVolverDestinos.addEventListener('click', function() {
+                infoDestino.innerHTML = "";
+            });
+        }
+
+        // --- UX: Mejor feedback visual en selects y campos requeridos ---
+        [selectDestino, hotelReserva, tipoViaje, diasViaje, personasViaje].forEach(el => {
+            if (el) {
+                el.addEventListener('invalid', function() {
+                    el.classList.add('input-error');
+                });
+                el.addEventListener('input', function() {
+                    el.classList.remove('input-error');
+                });
+            }
+        });
+
+        // --- UX: Mejorar experiencia en modales y formularios ---
+        // Enfocar primer input en formularios modales
+        if (modalConsultaReserva) {
+            modalConsultaReserva.addEventListener('transitionend', function() {
+                if (modalConsultaReserva.style.display === "flex") {
+                    const firstInput = modalConsultaReserva.querySelector('input');
+                    firstInput && firstInput.focus();
+                }
+            });
+        }
+
+        // --- UX: Mostrar spinner en búsqueda de reservas ---
+        if (btnBuscarReserva && resultadoReserva) {
+            btnBuscarReserva.addEventListener('click', function() {
+                resultadoReserva.innerHTML = '';
+                mostrarSpinner();
+                setTimeout(() => {
+                    ocultarSpinner();
+                    // ...existing code for búsqueda de reservas...
+                    // (No duplicar, solo dejar el código original aquí)
+                }, 600);
+            });
+        }
+
+        // --- UX: Mejorar feedback al cerrar formularios de personas ---
+        // (Ya implementado en crearFormularioPersonas)
+
+        // --- UX: Animación de scroll al mostrar formularios principales ---
+        function scrollToSection(section) {
+            if (section && section.scrollIntoView) {
+                setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
+            }
+        }
+        [reserva, destinos, hero].forEach(sec => {
+            if (sec) {
+                sec.addEventListener('transitionend', function() {
+                    if (sec.style.display === 'block' && sec.style.opacity === '1') {
+                        scrollToSection(sec);
+                    }
+                });
+            }
+        });
+
+        // --- UX: Mejorar experiencia de usuario en botones del modal de confirmación ---
+        // (Ya implementado en mostrarModalConfirmacion)
+
+        // --- UX: Mejorar experiencia en tooltips para accesibilidad ---
+        document.querySelectorAll('[title]').forEach(el => {
+            el.setAttribute('tabindex', '0');
+            el.addEventListener('focus', function() {
+                el.setAttribute('data-tooltip', el.getAttribute('title'));
+            });
+            el.addEventListener('blur', function() {
+                el.removeAttribute('data-tooltip');
+            });
+        });
+    });
 });
